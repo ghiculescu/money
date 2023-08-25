@@ -80,7 +80,7 @@ class Money
   configure
 
   def initialize(value, currency)
-    raise ArgumentError if value.nan?
+    raise ArgumentError, "tried to initialize a Money with a NaN value" if value.nan?
     @currency = Helpers.value_to_currency(currency)
     @value = BigDecimal(value.round(@currency.minor_units))
     freeze
